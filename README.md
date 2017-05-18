@@ -1,4 +1,4 @@
-#I'm not pushing commits for a while in the beginning, here's a sneak peek of the current progress =P
+# I'm not pushing commits for a while in the beginning, here's a sneak peek of the current progress =P
 
 ![Sup](http://i.imgur.com/yW5Dz4I.gif)
 
