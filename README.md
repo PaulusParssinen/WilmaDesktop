@@ -10,6 +10,8 @@ This is project is going to be made using WPF instead of WinForms. I'm gonna sta
 ## Project status
 Here you can see list of features and progress of them.
 
+Programming: ![Programming](http://progressed.io/bar/3)
+
 Project File Structure: ![Progress](http://progressed.io/bar/15)
 
 User-Interface: ![Progress](http://progressed.io/bar/10)
