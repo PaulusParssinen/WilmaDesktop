@@ -1,0 +1,3 @@
+[submodule "WilmAPI"]
+	path = WilmAPI
+	url = https://github.com/PaulusParssinen/WilmAPI
