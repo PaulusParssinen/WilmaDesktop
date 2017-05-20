@@ -15,10 +15,9 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         prism:ViewModelLocator.AutoWireViewModel="true"
         mc:Ignorable="d"
-        Title="WilmaDesktop" Height="375" Width="700" ResizeMode="NoResize">
+        Title="WilmaDesktop" Height="420" Width="750" ResizeMode="NoResize">
 
     <Grid>
-        <!-- Right Text Panel -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="4*"/>
@@ -27,78 +26,29 @@
         <Grid Background="{DynamicResource PrimaryHueMidBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="7*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="1" Grid.Column="1">Welcome</TextBlock>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Style="{StaticResource MaterialDesignDisplay1TextBlock}"
+                       Foreground="{DynamicResource MaterialDesignPaper}"
+                       Text="Welcome"/>
+
+                <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                       Foreground="{DynamicResource MaterialDesignPaper}"
+                       TextWrapping="Wrap" 
+                       Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "/>
+            </StackPanel>
         </Grid>
 
-        <!-- Left Login Panel-->
-        <StackPanel Grid.Column="1">
-            <!-- Login Text -->
-            <Grid x:Name="LoginTextGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="225"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Login to Wilma</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource MaterialDesignBody1TextBlock}" TextWrapping="Wrap">Type your Wilma account's details below in order to log in.</TextBlock>
-            </Grid>
-            
-            <!-- Login Controls -->
-            <Grid HorizontalAlignment="Center" Margin="0 10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="200"/>
-                    <!--<ColumnDefinition Width="*"/>-->
-
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <materialDesign:PackIcon Grid.Row="1" Kind="Account"
-                                         Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}"
-                                         Margin="4"
-                                         VerticalAlignment="Center"/>
-
-                <TextBox Grid.Row="1" Grid.Column="1" 
-                        Margin="0 8 0 8"
-				        x:Name="NameTextBox"
-				        materialDesign:HintAssist.Hint="Name">
-                </TextBox>
-
-                <materialDesign:PackIcon Grid.Row="2"  Kind="Lock"
-                                         Foreground="{Binding ElementName=PasswordTextBox, Path=BorderBrush}"
-                                         Margin="4"
-                                         VerticalAlignment="Center"/>
-
-                <TextBox Grid.Column="1" Grid.Row="2"
-                         Margin="0 8 0 8"
-				        x:Name="PasswordTextBox"
-				        materialDesign:HintAssist.Hint="Password">
-                </TextBox>
-            </Grid>
-            
-            <Button Width="100" Margin="125 0 0 0">Login</Button>
-        </StackPanel>
+        <ContentControl Grid.Column="1"
+                        prism:RegionManager.RegionName="MainRightContentRegion"/>
     </Grid>
 </Window>
 

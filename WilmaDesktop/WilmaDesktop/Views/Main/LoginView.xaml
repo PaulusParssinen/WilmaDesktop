@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="WilmaDesktop.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WilmaDesktop.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mvvm="http://prismlibrary.com/"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             mvvm:ViewModelLocator.AutoWireViewModel="true"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="331">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="7"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="7"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                FontWeight="Medium"
+                Text="Login" />
+
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                Margin="2 9 0 0"
+                Width="159"
+                FontWeight="Normal"
+                TextTrimming="WordEllipsis" 
+                Text="{Binding Server.Name}"
+                ToolTip="{Binding Server.Name}" />
+        </StackPanel>
+      
+        
+        <TextBlock Grid.Column="1" Grid.Row="3"
+                   Style="{StaticResource MaterialDesignBody1TextBlock}"
+                   TextWrapping="Wrap" 
+                   Text="Type your Wilma account's details below in order to log in."/>
+
+        <Grid Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <materialDesign:PackIcon Grid.Row="1" Grid.Column="1" Kind="Account"
+                                        Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}"
+                                        Margin="4"
+                                        VerticalAlignment="Center"/>
+
+            <TextBox Grid.Row="1" Grid.Column="2"
+                    x:Name="NameTextbox"
+                    Margin="0 8 0 8"
+				    materialDesign:HintAssist.Hint="Name"/>
+
+            <materialDesign:PackIcon Grid.Row="2" Grid.Column="1" Kind="Key"
+                                        Foreground="{Binding ElementName=PasswordTextBox, Path=BorderBrush}"
+                                        Margin="4"
+                                        VerticalAlignment="Center"/>
+
+            <PasswordBox Grid.Column="2" Grid.Row="2"
+                    x:Name="PasswordTextbox"
+                    Margin="0 8 0 8"
+				    materialDesign:HintAssist.Hint="Password"/>
+        </Grid>
+
+        <Button Grid.Column="1" Grid.Row="7"
+                x:Name="LoginButton"
+                Margin="0 0 15 0"
+                Width="100"
+                HorizontalAlignment="Right" Content="Login" />
+    </Grid>
+</UserControl>
