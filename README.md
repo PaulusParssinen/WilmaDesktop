@@ -1,18 +1,17 @@
-# I'm not pushing commits for a while in the beginning, here's a sneak peek of the current progress =P
-
+# Starting view Progess
 ![Sup](http://i.imgur.com/yW5Dz4I.gif)
 
 # WilmaDesktop
 Powerful and reliable way to use the Wilma web services on your computer.
 
-This is project is going to be made using WPF instead of WinForms. I'm gonna start learning MVVM design-patter for usage of it in this project.
+This is project is going to be made in WPF instead of WinForms that I'm usually using. Also the code _should_ be following the MVVM design-pattern guidelines.
 
 ## Project status
 Here you can see list of features and progress of them.
 
-Programming: ![Programming](http://progressed.io/bar/3)
+Programming: ![Programming](http://progressed.io/bar/4)
 
-Project File Structure: ![Progress](http://progressed.io/bar/15)
+Project File Structure: ![Progress](http://progressed.io/bar/30)
 
 User-Interface: ![Progress](http://progressed.io/bar/10)
 
