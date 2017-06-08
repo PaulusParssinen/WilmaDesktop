@@ -1,5 +1,5 @@
-# Starting view Progess
-![Sup](http://i.imgur.com/yW5Dz4I.gif)
+# Introduction Window Progess
+![KEK](http://i.imgur.com/yW5Dz4I.gif)
 
 # WilmaDesktop
 Powerful and reliable way to use the Wilma web services on your computer.
@@ -9,11 +9,24 @@ This is project is going to be made in WPF instead of WinForms that I'm usually 
 ## Project status
 Here you can see list of features and progress of them.
 
-Programming: ![Programming](http://progressed.io/bar/7)
+Overall Programming: ![Programming](http://progressed.io/bar/10)
 
-Project File Structure: ![Progress](http://progressed.io/bar/30)
+Project File-Structure: ![Progress](http://progressed.io/bar/40)
 
-User-Interface: ![Progress](http://progressed.io/bar/11)
+User-Interface: ![Progress](http://progressed.io/bar/15)
 
-Localisation: ![Progress](http://progressed.io/bar/1)
+Localisation: ![Progress](http://progressed.io/bar/2)
 
+<hr>
+
+Startup & Login: ![Progress](http://progressed.io/bar/40)
+
+Main Window: ![Progress](http://progressed.io/bar/1)
+
+Schedule: ![Progress](http://progressed.io/bar/0)
+
+Messaging: ![Progress](http://progressed.io/bar/0)
+
+Everything for higher roles than student: ![Progress](http://progressed.io/bar/0)
+
+Offline mode (Caching, Encrypting data locally): ![Progress](http://progressed.io/bar/0)
