@@ -6,6 +6,11 @@
              xmlns:local="clr-namespace:WilmaDesktop.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mvvm="http://prismlibrary.com/"
+             xmlns:Converter="clr-namespace:WilmaDesktop.Converters"
+
+             xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+             xmlns:animHelpers="clr-namespace:WilmaDesktop.Helpers.Animation"
+
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -16,6 +21,16 @@
              mvvm:ViewModelLocator.AutoWireViewModel="true"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="331">
+    <UserControl.Resources>
+        <Converter:LoginParameterConverter x:Key="LoginParameterConverter" />
+       
+        <ResourceDictionary x:Key="Shadilay">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -53,13 +68,16 @@
                    TextWrapping="Wrap" 
                    Text="Type your Wilma account's details below in order to log in."/>
 
-        <Grid Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center">
+        <Grid Grid.Column="1" Grid.Row="5"
+              HorizontalAlignment="Center"
+              x:Name="LoginFieldsRow"
+              animHelpers:ZoomInAnimation.IsEnabled="{c:Binding !IsLoggingIn}"
+              animHelpers:ZoomOutAnimation.IsEnabled="{Binding IsLoggingIn}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="25"/>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="Auto"/>
-
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -68,30 +86,67 @@
             </Grid.RowDefinitions>
 
             <materialDesign:PackIcon Grid.Row="1" Grid.Column="1" Kind="Account"
-                                        Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}"
+                                        Foreground="{Binding ElementName=NameTextbox, Path=BorderBrush}"
                                         Margin="4"
                                         VerticalAlignment="Center"/>
 
             <TextBox Grid.Row="1" Grid.Column="2"
                     x:Name="NameTextbox"
-                    Margin="0 8 0 8"
+                    Margin="0 8"
 				    materialDesign:HintAssist.Hint="Name"/>
 
             <materialDesign:PackIcon Grid.Row="2" Grid.Column="1" Kind="Key"
-                                        Foreground="{Binding ElementName=PasswordTextBox, Path=BorderBrush}"
+                                        Foreground="{Binding ElementName=PasswordTextbox, Path=BorderBrush}"
                                         Margin="4"
                                         VerticalAlignment="Center"/>
 
             <PasswordBox Grid.Column="2" Grid.Row="2"
                     x:Name="PasswordTextbox"
-                    Margin="0 8 0 8"
+                    Margin="0 8"
 				    materialDesign:HintAssist.Hint="Password"/>
         </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="5">
+            <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 UniformCornerRadius="14"
+                                 Visibility="Hidden"
+                                 animHelpers:ZoomInAnimation.IsEnabled="{Binding IsLoggingIn}"
+                                 animHelpers:ZoomOutAnimation.IsEnabled="{c:Binding !IsLoggingIn}">  
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                             x:Name="LoginProgressBar"
+                             IsIndeterminate="True"
+                             Margin="4"/>
+            </materialDesign:Card>
 
-        <Button Grid.Column="1" Grid.Row="7"
-                x:Name="LoginButton"
-                Margin="0 0 15 0"
-                Width="100"
-                HorizontalAlignment="Right" Content="Login" />
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Margin="0 4"
+                       Visibility="Hidden"
+                       animHelpers:ZoomInAnimation.StartDelay="0:0:.1"
+                       animHelpers:ZoomInAnimation.IsEnabled="{Binding IsLoggingIn}"
+                       animHelpers:ZoomOutAnimation.IsEnabled="{c:Binding !IsLoggingIn}"
+                       Text="Logging in.."/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="7" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    IsEnabled="{c:Binding !IsLoggingIn}">
+            
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    x:Name="GoBackButton"
+                    Content="Go back" />
+
+            <Button Margin="0 0 0 0"
+                    Width="100"
+                    x:Name="LoginButton"
+                    Command="{Binding LoginCommand}" 
+                    Content="Login">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource LoginParameterConverter}">
+                        <Binding Path="Text" ElementName="NameTextbox"/>
+                        <Binding ElementName="PasswordTextbox"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>
