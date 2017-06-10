@@ -27,14 +27,21 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CalcBinding, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CalcBinding.2.3.0\lib\net45\CalcBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicExpresso.Core, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicExpresso.Core.1.3.0.0\lib\net40\DynamicExpresso.Core.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -88,21 +95,28 @@
     </ApplicationDefinition>
     <Compile Include="Constants\ContentRegion.cs" />
     <Compile Include="Constants\NavigationView.cs" />
+    <Compile Include="Converters\LoginParameterConverter.cs" />
     <Compile Include="Converters\PrefixValueConverter.cs" />
+    <Compile Include="Helpers\Animation\Zoom\ZoomInAnimation.cs" />
+    <Compile Include="Helpers\Animation\Zoom\ZoomOutAnimation.cs" />
     <Compile Include="Utils\NotifyTaskCompletion.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SelectServerViewModel.cs" />
-    <Compile Include="Views\Main\SelectServerView.xaml.cs">
+    <Compile Include="Views\Login\SelectServerView.xaml.cs">
       <DependentUpon>SelectServerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\LoginView.xaml.cs">
+    <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Theme\Color\WilmaBlue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\IntroductionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -111,16 +125,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="ViewModels\IntroductionViewModel.cs" />
+    <Compile Include="Views\IntroductionView.xaml.cs">
+      <DependentUpon>IntroductionView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Main\SelectServerView.xaml">
+    <Page Include="Views\Login\SelectServerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Main\LoginView.xaml">
+    <Page Include="Views\Login\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +173,9 @@
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Events\" />
+    <Folder Include="Helpers\Animation\Fade\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Views\Main\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WilmAPI\WilmAPI\WilmAPI.csproj">
