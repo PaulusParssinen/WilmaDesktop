@@ -12,7 +12,7 @@ namespace WilmaDesktop
     public class Bootstrapper : UnityBootstrapper
     {
         protected override DependencyObject CreateShell()
-            => Container.Resolve<MainWindow>();
+            => Container.Resolve<IntroductionView>();
 
         protected override void InitializeShell()
         {
