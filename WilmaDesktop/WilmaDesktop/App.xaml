@@ -9,6 +9,12 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Theme/Color/WilmaBlue.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <KeyTime x:Key="ZoomInAnimationKeyTime">0:0:0.8</KeyTime>
+            <EasingMode x:Key="ZoomInAnimationEasingMode">EaseOut</EasingMode>
+
+            <KeyTime x:Key="ZoomOutAnimationKeyTime">0:0:0.8</KeyTime>
+            <EasingMode x:Key="ZoomOutAnimationEasingMode">EaseOut</EasingMode>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
