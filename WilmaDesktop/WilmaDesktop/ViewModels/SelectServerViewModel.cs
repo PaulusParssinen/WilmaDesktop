@@ -1,17 +1,16 @@
 ﻿using System;
+using System.Windows.Data;
+using System.ComponentModel;
 using System.Collections.Generic;
 
-using WilmaDesktop.Utils;
-using WilmAPI.Json;
 using WilmAPI;
+using WilmAPI.Json;
 
 using Prism.Mvvm;
-using System.ComponentModel;
-using System.Windows.Data;
-
-using Prism.Commands;
 using Prism.Regions;
+using Prism.Commands;
 
+using WilmaDesktop.Utils;
 using WilmaDesktop.Constants;
 
 namespace WilmaDesktop.ViewModels
@@ -21,12 +20,10 @@ namespace WilmaDesktop.ViewModels
         private string _filter = string.Empty;
         public string Filter
         {
-            get { return _filter; }
+            get => _filter;
             set
             {
-                if (_filter == value) return;
-
-                _filter = value;
+                SetProperty(ref _filter, value);
                 _serverCollection.Refresh();
             }
         }
@@ -37,18 +34,13 @@ namespace WilmaDesktop.ViewModels
         private WilmaServer _selectedServer;
         public WilmaServer SelectedServer
         {
-            get { return _selectedServer; }
-            set
-            {
-                _selectedServer = value;
-
-                RaisePropertyChanged(nameof(SelectedServer));
-            }
+            get => _selectedServer;
+            set => SetProperty(ref _selectedServer, value);
         }
 
         public NotifyTaskCompletion<List<WilmaServer>> Servers { get; set; }
 
-        public DelegateCommand SelectServerCommand { get; private set; }
+        public DelegateCommand SelectServerCommand { get; }
 
         public SelectServerViewModel(IRegionManager regionManager)
         {
@@ -60,7 +52,7 @@ namespace WilmaDesktop.ViewModels
             Servers.TaskCompleted += OnServersLoaded;
 
             SelectServerCommand = new DelegateCommand(SelectServer, 
-                () => SelectedServer != null) //top tier shit bois
+                () => SelectedServer != null)
                 .ObservesProperty(() => SelectedServer);
         }
 
@@ -85,10 +77,8 @@ namespace WilmaDesktop.ViewModels
         {
             var server = item as WilmaServer;
 
-            return server.Name.ToLower()
-                .Contains(_filter.ToLower()) || 
-                   server.Url.ToLower()
-                .Contains(_filter.ToLower());
+            return server != null && (server.Name.ToLower().Contains(_filter.ToLower()) || 
+                                      server.Url.ToLower().Contains(_filter.ToLower())); //This is horrible but whatever..
         }
     }
 }

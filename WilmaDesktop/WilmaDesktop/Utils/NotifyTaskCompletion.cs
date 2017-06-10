@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace WilmaDesktop.Utils
@@ -23,7 +20,10 @@ namespace WilmaDesktop.Utils
             {
                 await task;
             }
-            catch { }
+            catch
+            {
+                // Swallow exceptions
+            }
 
             var propertyChanged = PropertyChanged;
             if (propertyChanged == null)
@@ -50,7 +50,7 @@ namespace WilmaDesktop.Utils
                 TaskCompleted?.Invoke(this, EventArgs.Empty);
             }
         }
-        public Task<TResult> Task { get; private set; }
+        public Task<TResult> Task { get; }
 
         public TResult Result => 
             (Task.Status == TaskStatus.RanToCompletion) ? 
