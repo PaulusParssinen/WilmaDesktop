@@ -9,19 +9,19 @@ This is project is going to be made in WPF instead of WinForms that I'm usually 
 ## Project status
 Here you can see list of features and progress of them.
 
-Overall Programming: ![Programming](http://progressed.io/bar/10)
+Overall Programming: ![Programming](http://progressed.io/bar/12)
 
 Project File-Structure: ![Progress](http://progressed.io/bar/40)
 
-User-Interface: ![Progress](http://progressed.io/bar/15)
+User-Interface: ![Progress](http://progressed.io/bar/17)
 
 Localisation: ![Progress](http://progressed.io/bar/2)
 
 <hr>
 
-Startup & Login: ![Progress](http://progressed.io/bar/40)
+Startup & Login: ![Progress](http://progressed.io/bar/50)
 
-Main Window: ![Progress](http://progressed.io/bar/1)
+Main Window: ![Progress](http://progressed.io/bar/3)
 
 Schedule: ![Progress](http://progressed.io/bar/0)
 
